@@ -1,9 +1,23 @@
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { AuthLayout } from './layout/authLayout';
+import { ConfirmarCuenta } from './paginas/ConfirmarCuenta';
+import { Login } from './paginas/Login';
+import { OlvidePassword } from './paginas/OlvidePassword';
+import { Registrar } from './paginas/Registrar';
 
 function App() {
 
   return (
-    <h1>hola mundo con react y vite</h1>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={ <AuthLayout /> }>
+          <Route index element={ <Login/> }/>
+          <Route path='registrar' element={ <Registrar/> }/>
+          <Route path='confirmar/:id' element={ <ConfirmarCuenta/> }/>
+          <Route path='olvide-password' element={ <OlvidePassword/> }/>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
