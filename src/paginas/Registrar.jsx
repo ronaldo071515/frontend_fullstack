@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom";
 import { Alerta } from '../components/Alerta';
-
+import clienteAxios from '../config/axios';
 
 export const Registrar = () => {
   
@@ -12,7 +12,7 @@ export const Registrar = () => {
 
   const [alerta, setAlerta] = useState('');
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     if([nombre, email, password, repetirpassword].includes('')){
@@ -31,6 +31,21 @@ export const Registrar = () => {
     setAlerta({})
 
     //Crear el usuario en la API
+    try {
+
+      await clienteAxios.post('/veterinarios', { nombre, email, password });
+
+      setAlerta({
+        msg: 'Creado correctamente, revisa tu email',
+        error: false
+      });
+
+    } catch (error) {
+      setAlerta({
+        msg: error.response.data.msg,
+        error: true
+      });
+    }
 
   }
 
@@ -47,7 +62,7 @@ export const Registrar = () => {
           {/* Cargamos de manera condicional la alerta */}
           {msg && <Alerta alerta={alerta}/>}
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} method="POST">
             <div className="my-5">
               <label htmlFor="" className="uppercase text-gray-600 block text-xl font-bold">Nombre</label>
               <input type="text" className="border w-full p-3 mt-3 bg-gray-50 rounded-xl" value={nombre} onChange={e => setNombre(e.target.value)} placeholder="Tu Nombre"/>
