@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import AuthLayout from './layout/authLayout';
-import RutaProtegida from './layout/RutaProtegida';
+import AuthLayout from "../src/layout/AuthLayout";
+import RutaProtegida from "../src/layout/RutaProtegida";
 
 import { ConfirmarCuenta } from './paginas/ConfirmarCuenta';
 import { Login } from './paginas/Login';
