@@ -4,7 +4,7 @@ import { Header } from '../components/Header';
 import useAuth from '../hooks/useAuth';
 
 
-export const RutaProtegida = () => {
+const RutaProtegida = () => {
 
     const { auth, cargando } = useAuth()
 
@@ -22,3 +22,5 @@ export const RutaProtegida = () => {
     </>
   )
 }
+
+export default RutaProtegida
